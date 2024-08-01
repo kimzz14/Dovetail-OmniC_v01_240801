@@ -1,7 +1,5 @@
-#readID=SRR19088062
-readID=test
-threadN=24
-
+readID=$1
+threadN=$2
 pairtools \
     split \
     --nproc-in ${threadN} \

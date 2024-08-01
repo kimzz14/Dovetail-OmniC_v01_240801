@@ -1,6 +1,6 @@
-readID=SRR19088062
+readID=$1
+threadN=$2
 readDir=/archive/kimzz14/SRA_RAW/INSDC/Nibea_coibor/PRJNA827677
-threadN=24
 
 bwa \
     mem \
