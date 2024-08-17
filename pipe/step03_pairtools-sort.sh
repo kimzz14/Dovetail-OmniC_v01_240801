@@ -4,7 +4,7 @@ MIN_MAPQ=$3
 
 outDir=pairtools_aboveQ${MIN_MAPQ}/result
 
-mkdir ${outDir}
+mkdir -p ${outDir}
 
 pairtools \
     sort \
