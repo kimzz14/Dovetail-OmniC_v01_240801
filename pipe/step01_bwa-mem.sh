@@ -10,6 +10,6 @@ bwa \
     bwadb/ref.fa \
     ${readDir}/${readID}_1.fastq.gz \
     ${readDir}/${readID}_2.fastq.gz \
-    -o ${readID}.bwa_mem.sam \
-    1> ${readID}.bwa_mem.log \
-    2> ${readID}.bwa_mem.err
+    -o result/${readID}.bwa_mem.sam \
+    1> result/${readID}.bwa_mem.log \
+    2> result/${readID}.bwa_mem.err
