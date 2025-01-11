@@ -1,1 +1,0 @@
-sh ./pipe/run_Dovetail-OmniC.sh test 128 20

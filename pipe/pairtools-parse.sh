@@ -19,16 +19,14 @@ if [ -z ${MIN_MAPQ} ]; then
     exit 1
 fi
 
-outDir=pairtools_aboveQ${MIN_MAPQ}
-
-mkdir -p ${outDir}
-
 pairtools \
-    split \
+    parse \
+    --min-mapq ${MIN_MAPQ} \
+    --walks-policy 5unique \
+    --max-inter-align-gap 30 \
     --nproc-in ${threadN} \
     --nproc-out ${threadN} \
-    --output-pairs ${outDir}/${readID}.bwa_mem.aboveQ${MIN_MAPQ}.sorted.dedup.unsorted.pairs \
-    --output-sam   ${outDir}/${readID}.bwa_mem.aboveQ${MIN_MAPQ}.sorted.dedup.unsorted.bam \
-    ${outDir}/${readID}.bwa_mem.aboveQ${MIN_MAPQ}.sorted.dedup.pairsam \
-    1> ${outDir}/${readID}.bwa_mem.aboveQ${MIN_MAPQ}.sorted.dedup.unsorted.bam.log \
-    2> ${outDir}/${readID}.bwa_mem.aboveQ${MIN_MAPQ}.sorted.dedup.unsorted.bam.err
+    --chroms-path bwaDB/ref.fa \
+    result/${readID}.bam \
+    2> result/${readID}.aboveQ${MIN_MAPQ}.pairsam.log \
+    | bgzip > result/${readID}.aboveQ${MIN_MAPQ}.pairsam.gz

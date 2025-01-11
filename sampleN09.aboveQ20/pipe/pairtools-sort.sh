@@ -1,7 +1,6 @@
 ############################################################################################
 readID=$1
 threadN=$2
-MIN_MAPQ=$3
 ############################################################################################
 
 if [ -z ${readID} ]; then
@@ -14,19 +13,13 @@ if [ -z ${threadN} ]; then
     exit 1
 fi
 
-if [ -z ${MIN_MAPQ} ]; then
-    echo "MIN_MAPQ is empty."
-    exit 1
-fi
-
-outDir=pairtools_aboveQ${MIN_MAPQ}
-
-mkdir -p ${outDir}
-
 pairtools \
     sort \
+    --tmpdir ./tmp \
+    --memory 32G \
     --nproc ${threadN} \
-    --tmpdir=./tmp \
-    ${outDir}/${readID}.bwa_mem.aboveQ${MIN_MAPQ}.pairsam \
-    1> ${outDir}/${readID}.bwa_mem.aboveQ${MIN_MAPQ}.sorted.pairsam \
-    2> ${outDir}/${readID}.bwa_mem.aboveQ${MIN_MAPQ}.sorted.pairsam.log
+    --nproc-in ${threadN} \
+    --nproc-out ${threadN} \
+    result/${readID}.pairsam.gz \
+    2> result/${readID}.sorted.pairsam.log \
+    | bgzip > result/${readID}.sorted.pairsam.gz

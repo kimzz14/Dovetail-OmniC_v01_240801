@@ -1,7 +1,7 @@
 ############################################################################################
 readID=$1
 threadN=$2
-readDir=/test
+MIN_MAPQ=$3
 ############################################################################################
 
 if [ -z ${readID} ]; then
@@ -14,18 +14,12 @@ if [ -z ${threadN} ]; then
     exit 1
 fi
 
-bwa \
-    mem \
-    -5SP \
-    -T0 \
-    -t ${threadN} \
-    bwaDB/ref.fa \
-    ${readDir}/${readID}_1.fastq.gz \
-    ${readDir}/${readID}_2.fastq.gz \
-    2>  result/${readID}.bwa-memT002.log \
-    | samtools view -bS \
-    -o  result/${readID}.bwa-memT002.bam
-
-#T0xx = Short-read
-#T002 = 
-#T1xx = Long-read
+pairtools \
+    split \
+    --nproc-in ${threadN} \
+    --nproc-out ${threadN} \
+    --output-pairs result/${readID}.split.pairs \
+    --output-sam   result/${readID}.split.bam \
+    result/${readID}.pairsam.gz \
+    1> result/${readID}.split.bam.log \
+    2> result/${readID}.split.bam.err

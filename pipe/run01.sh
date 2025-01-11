@@ -1,6 +1,6 @@
 ############################################################################################
-readID=$1
-threadN=$2
+threadN=$1
+readID=$2
 MIN_MAPQ=$3
 ############################################################################################
 
@@ -19,8 +19,5 @@ if [ -z ${MIN_MAPQ} ]; then
     exit 1
 fi
 
-outDir=pairtools_aboveQ${MIN_MAPQ}
-
-mkdir -p ${outDir}
-
-python ./script/Omni-C/get_qc.py -p ${outDir}/${readID}.bwa_mem.aboveQ${MIN_MAPQ}.sorted.dedup.pairsam.stats 1> ${outDir}/${readID}.bwa_mem.aboveQ${MIN_MAPQ}.sorted.dedup.pairsam.stats.report
+sh ./pipe/bwa-memT002.sh     ${threadN} ${readID}
+sh ./pipe/pairtools-parse.sh ${threadN} ${readID}.bwa-memT002 ${MIN_MAPQ}
