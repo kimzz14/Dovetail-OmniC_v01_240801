@@ -26,7 +26,7 @@ pairtools \
     --max-inter-align-gap 30 \
     --nproc-in ${threadN} \
     --nproc-out ${threadN} \
-    --chroms-path bwaDB/ref.fa \
+    --chroms-path db/ref.fa \
     result/${readID}.bam \
     2> result/${readID}.aboveQ${MIN_MAPQ}.pairsam.log \
     | bgzip > result/${readID}.aboveQ${MIN_MAPQ}.pairsam.gz
