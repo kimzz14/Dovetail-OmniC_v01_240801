@@ -1,7 +1,6 @@
 ############################################################################################
 threadN=$1
 readID=$2
-MIN_MAPQ=$3
 ############################################################################################
 
 if [ -z ${readID} ]; then
@@ -14,12 +13,8 @@ if [ -z ${threadN} ]; then
     exit 1
 fi
 
-pairtools \
-    split \
-    --nproc-in ${threadN} \
-    --nproc-out ${threadN} \
-    --output-pairs result/${readID}.split.pairs \
-    --output-sam   result/${readID}.split.bam \
-    result/${readID}.pairsam.gz \
-    1> result/${readID}.split.bam.log \
-    2> result/${readID}.split.bam.err
+samtools index \
+    --threads ${threadN} \
+    -c  result/${readID}.bam \
+    1>  result/${readID}.bam.csi.log \
+    2>  result/${readID}.bam.csi.err

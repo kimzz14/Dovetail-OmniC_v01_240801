@@ -12,13 +12,13 @@ pairtools \
     merge \
     --tmpdir ./tmp \
     --memory 32G \
-    --nproc ${threadN} \
-    --nproc-in ${threadN} \
+    --nproc     ${threadN} \
+    --nproc-in  ${threadN} \
     --nproc-out ${threadN} \
     --output result/${readID}.pairsam.gz \
-    ../result/sample.OmniC.01C.aboveQ20.pairsam.gz \
-    ../result/sample.OmniC.02C.aboveQ20.pairsam.gz \
-    ../result/sample.OmniC.03C.aboveQ20.pairsam.gz \
-    ../result/sample.OmniC.04C.aboveQ20.pairsam.gz \
-    1> result/${readID}.pairsam.log \
-    2> result/${readID}.pairsam.err \
+    ../result/sample.OmniC.01C.bwa-memT002.aboveQ20.pairsam.gz \
+    ../result/sample.OmniC.02C.bwa-memT002.aboveQ20.pairsam.gz \
+    ../result/sample.OmniC.03C.bwa-memT002.aboveQ20.pairsam.gz \
+    ../result/sample.OmniC.04C.bwa-memT002.aboveQ20.pairsam.gz \
+    1>       result/${readID}.pairsam.log \
+    2>       result/${readID}.pairsam.err \

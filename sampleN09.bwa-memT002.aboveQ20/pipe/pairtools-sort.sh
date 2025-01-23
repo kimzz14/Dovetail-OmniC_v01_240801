@@ -17,9 +17,9 @@ pairtools \
     sort \
     --tmpdir ./tmp \
     --memory 32G \
-    --nproc ${threadN} \
-    --nproc-in ${threadN} \
+    --nproc     ${threadN} \
+    --nproc-in  ${threadN} \
     --nproc-out ${threadN} \
-    result/${readID}.pairsam.gz \
-    2> result/${readID}.sorted.pairsam.log \
+              result/${readID}.pairsam.gz \
+    2>        result/${readID}.sorted.pairsam.log \
     | bgzip > result/${readID}.sorted.pairsam.gz

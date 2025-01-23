@@ -1,6 +1,7 @@
 ############################################################################################
 threadN=$1
 readID=$2
+MIN_MAPQ=$3
 ############################################################################################
 
 if [ -z ${readID} ]; then
@@ -14,13 +15,11 @@ if [ -z ${threadN} ]; then
 fi
 
 pairtools \
-    dedup \
-    --n-proc ${threadN} \
-    --nproc-in ${threadN} \
-    --nproc-out ${threadN} \
-    --mark-dups \
-    --output-stats result/${readID}.dedup.pairsam.stats \
-    --output result/${readID}.dedup.pairsam.gz \
-    result/${readID}.pairsam.gz \
-    1> result/${readID}.dedup.pairsam.log \
-    2> result/${readID}.dedup.pairsam.err
+    split \
+    --nproc-in     ${threadN} \
+    --nproc-out    ${threadN} \
+    --output-pairs result/${readID}.split.pairs \
+    --output-sam   result/${readID}.split.bam \
+                   result/${readID}.pairsam.gz \
+    1>             result/${readID}.split.bam.log \
+    2>             result/${readID}.split.bam.err
