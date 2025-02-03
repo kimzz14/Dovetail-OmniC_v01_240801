@@ -11,7 +11,7 @@ fi
 pairtools \
     merge \
     --tmpdir ./tmp \
-    --memory 32G \
+    --memory 64G \
     --nproc     ${threadN} \
     --nproc-in  ${threadN} \
     --nproc-out ${threadN} \
